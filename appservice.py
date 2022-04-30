@@ -1,15 +1,18 @@
 class Command():
-  pass 
+    pass
+
 
 class Query():
-  pass
+    pass
+
 
 class QueryResponse():
-  pass 
+    pass
+
 
 class AppService():
-  def Query(query: Query) -> QueryResponse:
-    pass 
-  
-  def Execute(command: Command) -> None:
-    pass
+    def Query(query: Query) -> QueryResponse:
+        pass
+
+    def Execute(command: Command) -> None:
+        pass
