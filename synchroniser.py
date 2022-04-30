@@ -1,24 +1,35 @@
 from appservice import (
-    AppService,
+    HttpAppService,
     Query,
     QueryResponse
 )
 
 import constants
+import pprint
 
 
 class GetSchemaResponse(QueryResponse):
-    def GetName():
-        pass
+    pass
 
 
-class GetSchemaQuery(Query):
-    def GetResponse() -> GetSchemaResponse:
+class GetCollectionsQuery(Query):
+
+    def __init__(self, site_id) -> None:
+        self.site_id: int = site_id
+        self.url: str = f'https://api.webflow.com/sites/{site_id}/collections'
+        super().__init__()
+
+    def get_response(self) -> GetSchemaResponse:
         pass
 
 
 def main():
-    app_service = AppService()
-    response: GetSchemaResponse = app_service.Query(GetSchemaQuery())
-    response.GetName()
-    print(constants.FROM_WEBFLOW_ACCESS_TOKEN)
+    site_id = constants.FROM_WEBFLOW_SITE_ID
+    app_service = HttpAppService()
+    get_collections_query = GetCollectionsQuery(site_id)
+    response: GetSchemaResponse = app_service.query(get_collections_query)
+    pprint.pprint(response.json)
+
+
+if __name__ == "__main__":
+    main()
